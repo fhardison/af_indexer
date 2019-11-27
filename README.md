@@ -1,6 +1,8 @@
 # af-indexer
 
-A repo of tools that creates index files for the Apostolic Fathers format that is being used by <https://github.com/jtauber/greek-texts>.
+A repo of tools that creates index files for JTauber's [vocabulary-tools](https://github.com/jtauber/vocabulary-tools) for the Apostolic Fathers format that is being used by <https://github.com/jtauber/greek-texts>.
+
+Note, it currently doesn't ignore in line markup and assumes that the only things on each line are tokens. (TODO ITEM)
 
 It defines four functions that map verses, chapters, books, and pericopes onto token index in the corpus:
 
