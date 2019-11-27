@@ -2,7 +2,20 @@
 
 A repo of tools that creates index files for JTauber's [vocabulary-tools](https://github.com/jtauber/vocabulary-tools) for the Apostolic Fathers format that is being used by <https://github.com/jtauber/greek-texts>.
 
-Note, it currently doesn't ignore in line markup and assumes that the only things on each line are tokens. (TODO ITEM)
+NB: It currently doesn't ignore in line markup and assumes that the only things on each line are tokens. (TODO ITEM)
+
+NB: You will needed to generate a `tokens.txt` file where each token has the following format:
+
+`index text-in-file normalized POS parse alt-parse lemma`
+
+If you're not interested in a POS or the parse data then just include a place holder such as in the example below.
+
+```
+1 ܟܬܒܐ ܟܬܒܐ POS MTAG MTAGN ܟܬܒܐ
+```
+
+NB: The index is the index of the token in the corpus, not the file it comes from.
+
 
 It defines four functions that map verses, chapters, books, and pericopes onto token index in the corpus:
 
@@ -12,6 +25,24 @@ It defines four functions that map verses, chapters, books, and pericopes onto t
 * `create_pericopes`
 
 It assumes that the books will be in separate files, but reads the book and chapter code from the file and thus *should* still work for works where all books are in the same file.
+
+It also includes a `main.py` file which contains code that will read these index files. It assumes that you are generating verses, chapters, books, and pericopes. If not then edit this part:
+
+```
+ChunkType = enum.Enum("ChunkType", "book chapter verse pericope")
+TokenType = enum.Enum("TokenType", "text form lemma")
+
+chunk_data_filename = {
+    ChunkType.book: "books.txt",
+    ChunkType.chapter: "chapters.txt",
+    ChunkType.verse: "verses.txt",
+    ChunkType.pericope: "pericopes.txt",
+}
+```
+
+It also includes `__init__.py` which like `main.py` was taken from JTauber's [vocabulary-tools](https://github.com/jtauber/vocabulary-tools). This init file is needed to be able to import the module to vocabulary-tools.
+
+# Functions
 
 ## `create_verses`
 
