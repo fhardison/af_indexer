@@ -16,10 +16,11 @@ def create_verses(books_list, opath):
 
 def create_chapters(books_list, opath):
     with open(opath, 'w', encoding="UTF-8") as g:
-        cur_cpt = 1
+
         cpt_start = 1
         wcount = 0
         for BOOK in books_list:
+            cur_cpt = 1
             with open(BOOK, 'r', encoding="UTF-8") as f:
                 for line in f:
                     ref, cons = line.strip().split(" ", maxsplit=1)

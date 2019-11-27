@@ -40,7 +40,12 @@ chunk_data_filename = {
 }
 ```
 
-It also includes `__init__.py` which like `main.py` was taken from JTauber's [vocabulary-tools](https://github.com/jtauber/vocabulary-tools). This init file is needed to be able to import the module to vocabulary-tools.
+You will also need to create an `__init__.py` with the following content:
+
+```
+from .main import get_tokens, get_tokens_by_chunk, ChunkType, TokenType
+```
+This code like `main.py` was taken from JTauber's [vocabulary-tools](https://github.com/jtauber/vocabulary-tools). This init file is needed to be able to import the module to vocabulary-tools.
 
 # Functions
 
